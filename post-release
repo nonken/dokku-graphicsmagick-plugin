@@ -3,12 +3,6 @@ APP="$1"; IMAGE="dokku/$APP"
 
 set -e
 
-# Check for Procfile
-ID=$(docker run -d $IMAGE test -f app/Procfile)
-if [ $(docker wait $ID) -ne 0 ]; then
-  exit 0
-fi
-
 echo "-----> Injecting GraphicsMagick ..."
 
 CMD="cat > gm && \
