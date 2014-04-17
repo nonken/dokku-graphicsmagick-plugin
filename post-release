@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 APP="$1"; IMAGE="dokku/$APP"
 
-set -e
-
 echo "-----> Injecting GraphicsMagick ..."
+
+set -e
 
 CMD="cat > gm && \
   dpkg -s graphicsmagick > /dev/null 2>&1 || \
