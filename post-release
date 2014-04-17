@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 APP="$1"; IMAGE="dokku/$APP"
 
 set -e
