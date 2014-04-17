@@ -9,6 +9,6 @@ CMD="cat > gm && \
   dpkg -s graphicsmagick > /dev/null 2>&1 || \
   (apt-get update && apt-get install -y graphicsmagick && apt-get clean)"
 
-ID=$(echo "$runner" | docker run -i -a stdin $IMAGE /bin/bash -c "$CMD")
+ID=$(docker run -i -a stdin $IMAGE /bin/bash -c "$CMD")
 test $(docker wait $ID) -eq 0
 docker commit $ID $IMAGE > /dev/null
