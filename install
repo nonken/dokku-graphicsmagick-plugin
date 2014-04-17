@@ -1,5 +1,11 @@
 #!/bin/bash
+set -e
 
-# Build docker image
-CWD=$(cd $(dirname $0); pwd)
-docker build -t nonken/graphicsmagick $CWD
+IMAGE="progrium/buildstep"
+
+CMD="apt-get update && apt-get install -y graphicsmagick && apt-get clean"
+
+ID=$(docker run -d $IMAGE /bin/sh -c "$CMD")
+docker attach $ID
+test $(docker wait $ID) -eq 0
+docker commit $ID $IMAGE > /dev/null
